@@ -1,10 +1,10 @@
-import Util from './../imports/utils';
-import add from './../imports/math';
+import { Meteor } from 'meteor/meteor';
 
-async function startup() {
-  console.log('Log from /server/main.js');
-  console.log(await add(10, 12));
-  console.log('done', Util);
-}
+Meteor.startup(function() {
+  console.log('Server is started up');
 
-startup();
+  setInterval(() => {
+    debugger;
+    console.log('eyyy');
+  }, 5000);
+});

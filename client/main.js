@@ -1,5 +1,10 @@
-// import './../utils/main.js';
-import { greetUser, name } from './../imports/utils';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Meteor } from 'meteor/meteor';
 
-console.log('Log from /client/main.js');
-console.log(greetUser(), name);
+Meteor.startup(function() {
+  debugger;
+  let name = 'Meee';
+  let jsx = <p>Cooool, {name}</p>;
+  ReactDOM.render(jsx, document.getElementById('app'));
+});

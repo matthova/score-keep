@@ -1,3 +1,5 @@
+/* global document */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
@@ -9,6 +11,6 @@ import App from './../imports/ui/App';
 Meteor.startup(() => {
   Tracker.autorun(() => {
     const players = Players.find().fetch();
-    ReactDOM.render(<App players={players}/>, document.getElementById('app'));
+    ReactDOM.render(<App players={players} />, document.getElementById('app'));
   });
 });

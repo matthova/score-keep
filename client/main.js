@@ -13,6 +13,12 @@ const renderPlayers = (players = []) => {
   return players.map(player => (
     <div key={player._id}>
       <p>{player.name} has {player.score} point{Math.abs(Number(player.score)) === 1 ? '' : 's' }.</p>
+      <button onClick={() => {
+        Players.update(player._id, {$inc: {score: 1}})
+      }}>+1</button>
+      <button onClick={() => {
+        Players.update(player._id, {$inc: {score: -1}})
+      }}>-1</button>
       <button onClick={() => Players.remove({ _id: player._id })}>X</button>
     </div>
   ));

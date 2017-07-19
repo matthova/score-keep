@@ -11,9 +11,17 @@ const renderPlayers = function(players = []) {
   ));
 };
 
+const addPlayer = function() {
+  Players.insert({
+    name: `my name${new Date()}`,
+    score: 0,
+  });
+}
+
 Meteor.startup(function() {
   Tracker.autorun(function() {
     const players = Players.find().fetch();
+    const playersDiv = renderPlayers(players);
 
     const title = 'Score Keep';
     let name = 'Meee';
@@ -21,7 +29,8 @@ Meteor.startup(function() {
     let jsx = (
       <div>
         <h1>{title}</h1>
-        {renderPlayers(players)}
+        <button onClick={addPlayer}>Add a player</button>
+        {playersDiv}
       </div>
     );
     ReactDOM.render(jsx, document.getElementById('app'));

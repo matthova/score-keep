@@ -4,6 +4,8 @@ import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 
 import { Players } from './../imports/api/players';
+import TitleBar from './../imports/ui/TitleBar';
+import AddPlayer from './../imports/ui/AddPlayer';
 
 const removePlayer = () => {
 
@@ -24,19 +26,6 @@ const renderPlayers = (players = []) => {
   ));
 };
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-  const playerName = e.target.playerName.value;
-  if (playerName) {
-    e.target.playerName.value = '';
-
-    Players.insert({
-      name: playerName,
-      score: 0,
-    });
-  }
-}
-
 Meteor.startup(() => {
   Tracker.autorun(() => {
     const players = Players.find().fetch();
@@ -47,11 +36,8 @@ Meteor.startup(() => {
 
     let jsx = (
       <div>
-        <h1>{title}</h1>
-        <form onSubmit={handleSubmit}>
-          <input type="text" name="playerName" placeholder="Player Name"/>
-          <button>Add Player</button>
-        </form>
+        <TitleBar title="Score Keep"/>
+        <AddPlayer/>
         {playersDiv}
       </div>
     );

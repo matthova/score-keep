@@ -11,11 +11,17 @@ const renderPlayers = function(players = []) {
   ));
 };
 
-const addPlayer = function() {
-  Players.insert({
-    name: `my name${new Date()}`,
-    score: 0,
-  });
+const handleSubmit = function(e) {
+  e.preventDefault();
+  const playerName = e.target.playerName.value;
+  if (playerName) {
+    e.target.playerName.value = '';
+
+    Players.insert({
+      name: playerName,
+      score: 0,
+    });
+  }
 }
 
 Meteor.startup(function() {
@@ -29,7 +35,10 @@ Meteor.startup(function() {
     let jsx = (
       <div>
         <h1>{title}</h1>
-        <button onClick={addPlayer}>Add a player</button>
+        <form onSubmit={handleSubmit}>
+          <input type="text" name="playerName" placeholder="Player Name"/>
+          <button>Add Player</button>
+        </form>
         {playersDiv}
       </div>
     );

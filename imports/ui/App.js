@@ -9,7 +9,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <TitleBar title="Score Keep" subtitle="Created by Matt Hova" />
+        <TitleBar title={this.props.title} />
         <AddPlayer />
         <PlayerList players={this.props.players} />
       </div>
@@ -19,4 +19,5 @@ export default class App extends React.Component {
 
 App.propTypes = {
   players: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired,
 };

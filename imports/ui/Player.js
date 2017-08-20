@@ -9,7 +9,7 @@ export default class Player extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="item">
         <p>
           {this.props.player.name} has {this.props.player.score} {this.pluralizeScore()}.
         </p>
